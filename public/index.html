@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Server IPTV - Canais, filmes e séries ilimitados em Ultra HD sem travamentos. Faça um teste gratuito de 4 horas agora mesmo!">
+    <title>New Server | IPTV de Alta Performance - Canais, Filmes e Séries</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo-link">
+                <img src="assets/logo.png" alt="New Server Logo" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="#beneficios" class="nav-link">Benefícios</a>
+                <a href="#como-funciona" class="nav-link">Dispositivos</a>
+                <a href="#planos" class="nav-link">Planos</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contato" class="nav-link">Suporte</a>
+            </nav>
+            <div class="header-actions">
+                <a href="#teste-gratis" class="btn btn-primary btn-sm"><i class="fa-solid fa-play"></i> Teste Grátis</a>
+                <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <img src="assets/logo.png" alt="New Server Logo" class="logo-img">
+            <button class="close-drawer" id="closeDrawer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="#beneficios" class="drawer-link">Benefícios</a>
+            <a href="#como-funciona" class="drawer-link">Dispositivos</a>
+            <a href="#planos" class="drawer-link">Planos</a>
+            <a href="#faq" class="drawer-link">FAQ</a>
+            <a href="#contato" class="drawer-link">Suporte</a>
+            <a href="#teste-gratis" class="btn btn-primary btn-block"><i class="fa-solid fa-play"></i> Teste Grátis</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge-glow"><i class="fa-solid fa-bolt text-warning"></i> Servidor Ultra Estável</div>
+                <h1>Canais, Filmes e Séries em <span class="gradient-text">Ultra HD</span> Sem Travamentos!</h1>
+                <p class="hero-lead">Tenha acesso a mais de 100.000 conteúdos (esportes, documentários, infantis, novelas e os últimos lançamentos do cinema) na melhor qualidade de transmissão.</p>
+                
+                <ul class="hero-features">
+                    <li><i class="fa-solid fa-circle-check text-primary"></i> Mais de 80.000 Filmes e Séries Atualizados</li>
+                    <li><i class="fa-solid fa-circle-check text-primary"></i> Todos os Canais Abertos e Fechados</li>
+                    <li><i class="fa-solid fa-circle-check text-primary"></i> Tecnologia Anti-Buffering (Sem Travamentos)</li>
+                    <li><i class="fa-solid fa-circle-check text-primary"></i> Suporte Especializado via WhatsApp</li>
+                </ul>
+
+                <div class="hero-buttons">
+                    <a href="#teste-gratis" class="btn btn-primary btn-lg"><i class="fa-solid fa-gift"></i> Testar 4h Grátis</a>
+                    <a href="#planos" class="btn btn-outline btn-lg"><i class="fa-solid fa-tags"></i> Ver Planos</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="mockup-tv-container">
+                    <div class="mockup-glow"></div>
+                    <div class="mockup-tv">
+                        <img src="assets/tv_screen.png" alt="Interface IPTV" class="tv-screen">
+                        <div class="tv-stand"></div>
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <span>Qualidade 4K</span>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <i class="fa-solid fa-tv"></i>
+                        <span>+100 Mil Conteúdos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <h3>+25k</h3>
+                <p>Clientes Ativos</p>
+            </div>
+            <div class="stat-item-divider"></div>
+            <div class="stat-item">
+                <h3>99.9%</h3>
+                <p>Uptime Servidores</p>
+            </div>
+            <div class="stat-item-divider"></div>
+            <div class="stat-item">
+                <h3>4K/FHD</h3>
+                <p>Resolução Máxima</p>
+            </div>
+            <div class="stat-item-divider"></div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Suporte Técnico</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="section benefits">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Por que escolher a <span class="gradient-text">New Server</span>?</h2>
+                <p>Oferecemos a melhor infraestrutura para você curtir seus momentos de lazer com máxima qualidade.</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3>Servidores Anti-Travamento</h3>
+                    <p>Nossa rede CDN dedicada garante estabilidade máxima na transmissão, mesmo em conexões modestas de internet.</p>
+                </div>
+
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                    <h3>Catálogo Gigante</h3>
+                    <p>Acesso ilimitado às maiores plataformas de streaming de filmes e séries, tudo unificado em um único aplicativo.</p>
+                </div>
+
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3>Suporte Humanizado</h3>
+                    <p>Nossa equipe de suporte está sempre à postos no WhatsApp para te ajudar a configurar e tirar qualquer dúvida rapidamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Configurar / Dispositivos -->
+    <section id="como-funciona" class="section devices-section bg-darker">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Compatível Com Todos os Seus <span class="gradient-text">Dispositivos</span></h2>
+                <p>Você pode assistir onde e quando quiser. Veja como é fácil configurar em seu aparelho preferido.</p>
+            </div>
+
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="tv"><i class="fa-solid fa-tv"></i> Smart TV</button>
+                    <button class="tab-btn" data-tab="celular"><i class="fa-solid fa-mobile-screen-button"></i> Smartphone</button>
+                    <button class="tab-btn" data-tab="box"><i class="fa-solid fa-cubes"></i> TV Box / Firestick</button>
+                    <button class="tab-btn" data-tab="pc"><i class="fa-solid fa-laptop"></i> Computador</button>
+                </div>
+
+                <div class="tabs-content">
+                    <!-- Tab TV -->
+                    <div class="tab-pane active" id="tv">
+                        <div class="tab-pane-grid">
+                            <div class="tab-pane-text">
+                                <h3>Assista direto na sua Smart TV</h3>
+                                <p>Compatível com Samsung (Tizen), LG (webOS), Android TV e TVs com sistema Roku.</p>
+                                <ul class="device-steps">
+                                    <li><span>1</span> Procure na loja de apps por: <b>IB Player Pro</b>, <b>DupleCast</b>, <b>DuplexPlay</b>, entre outros.</li>
+                                    <li><span>2</span> Abra o aplicativo instalado em sua televisão.</li>
+                                    <li><span>3</span> Insira a lista M3U ou os dados de login (Usuário/Senha/DNS) gerados no teste grátis.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-img">
+                                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=80" alt="Smart TV Configuração">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Celular -->
+                    <div class="tab-pane" id="celular">
+                        <div class="tab-pane-grid">
+                            <div class="tab-pane-text">
+                                <h3>Leve sua programação no bolso</h3>
+                                <p>Assista em smartphones ou tablets Android e iPhones/iPads com máxima portabilidade.</p>
+                                <ul class="device-steps">
+                                    <li><span>1</span> <b>Android:</b> Baixe o app na PlayStore (ex: <i>Blink Player Pro</i>, <i>XCIPTV</i>).</li>
+                                    <li><span>2</span> <b>iOS (iPhone):</b> Instale o <i>Smarters Player Lite</i> ou <i>Blink Player Pro</i>.</li>
+                                    <li><span>3</span> Insira suas credenciais e assista de qualquer lugar via 4G, 5G ou Wi-Fi.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-img">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="Smartphone Configuração">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Box -->
+                    <div class="tab-pane" id="box">
+                        <div class="tab-pane-grid">
+                            <div class="tab-pane-text">
+                                <h3>Transforme sua TV comum com TV Box</h3>
+                                <p>Compatível com qualquer TV Box, Chromecast, Xiaomi Mi Box, Mi Stick e Amazon Fire TV Stick.</p>
+                                <ul class="device-steps">
+                                    <li><span>1</span> Abra a Play Store ou a loja de aplicativos do seu dispositivo.</li>
+                                    <li><span>2</span> Instale o aplicativo <b>Downloader</b> e digite o código do nosso app próprio.</li>
+                                    <li><span>3</span> Abra o app instalado e faça login com seu Usuário e Senha.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-img">
+                                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80" alt="TV Box Configuração">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab PC -->
+                    <div class="tab-pane" id="pc">
+                        <div class="tab-pane-grid">
+                            <div class="tab-pane-text">
+                                <h3>Assista direto do seu navegador ou computador</h3>
+                                <p>Perfeito para assistir enquanto trabalha ou estuda no Windows, macOS ou Linux.</p>
+                                <ul class="device-steps">
+                                    <li><span>1</span> Acesse o WebPlayer pelo navegador: <a href="http://webtv.iptvblinkplayer.com/m3u-login" target="_blank" style="color: #ff8c00; font-weight: 700; text-decoration: underline;">webtv.iptvblinkplayer.com/m3u-login</a>.</li>
+                                    <li><span>2</span> Na tela de login, selecione o tipo de playlist (Playlist Type) como <b>M3U File Url</b>.</li>
+                                    <li><span>3</span> Digite o Playlist Name como <b>newserver</b> e cole a URL da lista M3U completa gerada no seu teste.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-img">
+                                <img src="assets/pc_setup.png" alt="Computador Configuração">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Planos -->
+    <section id="planos" class="section pricing">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Escolha Seu <span class="gradient-text">Plano de Assinatura</span></h2>
+                <p>Libere entretenimento sem limites com valores super acessíveis e sem fidelidade obrigatória.</p>
+            </div>
+
+            <div class="grid grid-3">
+                <!-- Plano Mensal -->
+                <div class="card pricing-card">
+                    <div class="pricing-card-header">
+                        <h3>Plano Mensal</h3>
+                        <div class="price">
+                            <span class="currency">R$</span>
+                            <span class="value">29</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="pricing-desc">Renovação mensal, ideal para experimentar sem compromisso.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 1 Tela Simultânea</li>
+                        <li><i class="fa-solid fa-check"></i> +100 mil Filmes & Séries</li>
+                        <li><i class="fa-solid fa-check"></i> Canais 4K/FHD/HD</li>
+                        <li><i class="fa-solid fa-check"></i> Guia de Programação (EPG)</li>
+                        <li><i class="fa-solid fa-check"></i> Canais Adultos Opcionais</li>
+                        <li><i class="fa-solid fa-check"></i> Suporte via WhatsApp</li>
+                    </ul>
+                    <div class="pricing-card-footer">
+                        <a href="https://wa.me/5579998130038?text=Ol%C3%A1%21+Gostaria+de+assinar+o+Plano+Mensal+do+New+Server." target="_blank" class="btn btn-outline btn-block">Contratar Plano</a>
+                    </div>
+                </div>
+
+                <!-- Plano Semestral (Mais Vendido) -->
+                <div class="card pricing-card featured">
+                    <div class="card-badge">Mais Popular</div>
+                    <div class="pricing-card-header">
+                        <h3>Plano Semestral</h3>
+                        <div class="price">
+                            <span class="currency">R$</span>
+                            <span class="value">149</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/6 meses</span>
+                        </div>
+                        <p class="pricing-desc">Equivale a apenas <b>R$ 24,98 por mês</b>. Economia garantida!</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 1 Tela Simultânea</li>
+                        <li><i class="fa-solid fa-check"></i> +100 mil Filmes & Séries</li>
+                        <li><i class="fa-solid fa-check"></i> Canais 4K/FHD/HD</li>
+                        <li><i class="fa-solid fa-check"></i> Guia de Programação (EPG)</li>
+                        <li><i class="fa-solid fa-check"></i> Canais Adultos Opcionais</li>
+                        <li><i class="fa-solid fa-check"></i> Suporte VIP via WhatsApp</li>
+                    </ul>
+                    <div class="pricing-card-footer">
+                        <a href="https://wa.me/5579998130038?text=Ol%C3%A1%21+Gostaria+de+assinar+o+Plano+Semestral+do+New+Server." target="_blank" class="btn btn-primary btn-block">Contratar Plano</a>
+                    </div>
+                </div>
+
+                <!-- Plano Anual -->
+                <div class="card pricing-card">
+                    <div class="pricing-card-header">
+                        <h3>Plano Anual</h3>
+                        <div class="price">
+                            <span class="currency">R$</span>
+                            <span class="value">239</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/ano</span>
+                        </div>
+                        <p class="pricing-desc">Equivale a apenas <b>R$ 19,99 por mês</b>. O maior desconto!</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 1 Tela Simultânea</li>
+                        <li><i class="fa-solid fa-check"></i> +100 mil Filmes & Séries</li>
+                        <li><i class="fa-solid fa-check"></i> Canais 4K/FHD/HD</li>
+                        <li><i class="fa-solid fa-check"></i> Guia de Programação (EPG)</li>
+                        <li><i class="fa-solid fa-check"></i> Canais Adultos Opcionais</li>
+                        <li><i class="fa-solid fa-check"></i> Suporte Ultra VIP via WhatsApp</li>
+                    </ul>
+                    <div class="pricing-card-footer">
+                        <a href="https://wa.me/5579998130038?text=Ol%C3%A1%21+Gostaria+de+assinar+o+Plano+Anual+do+New+Server." target="_blank" class="btn btn-outline btn-block">Contratar Plano</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trial Generation Section -->
+    <section id="teste-gratis" class="section trial bg-darker">
+        <div class="container trial-container">
+            <div class="trial-text-side">
+                <div class="badge-glow"><i class="fa-solid fa-gift"></i> Teste Imediato</div>
+                <h2>Gere Seu Teste Grátis de <span class="gradient-text">4 Horas</span> Agora!</h2>
+                <p>Preencha os campos ao lado para receber seus dados de acesso na tela imediatamente. Assista de graça e comprove a qualidade sem travamentos do New Server!</p>
+                <div class="trial-rules">
+                    <div class="rule-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <h4>Apenas 1 teste por cliente</h4>
+                            <p>Nosso sistema valida e libera apenas um teste gratuito por número de WhatsApp e IP de internet.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <div>
+                            <h4>Acesso Completo por 4 Horas</h4>
+                            <p>Grade inteira de canais, filmes e séries aberta para você testar todas as funcionalidades do painel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trial-form-side">
+                <div class="card form-card">
+                    <h3>Solicitar Teste</h3>
+                    <p>Preencha com seus dados reais para liberar o acesso.</p>
+                    
+                    <form id="trialForm">
+                        <div class="form-group">
+                            <label for="clientName"><i class="fa-solid fa-user"></i> Seu Nome Completo</label>
+                            <input type="text" id="clientName" placeholder="Ex: Arthur Silva" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientWhatsapp"><i class="fa-brands fa-whatsapp"></i> Seu WhatsApp</label>
+                            <input type="tel" id="clientWhatsapp" placeholder="Ex: (79) 99981-3003" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">
+                            <span class="btn-text">Liberar Meu Teste Grátis</span>
+                        </button>
+                    </form>
+                    <div id="formErrorMessage" class="form-error-msg hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="section faq">
+        <div class="container faq-container">
+            <div class="section-header text-center">
+                <h2>Perguntas <span class="gradient-text">Frequentes</span></h2>
+                <p>Tire suas dúvidas antes de assinar. Se precisar de mais informações, contate o suporte.</p>
+            </div>
+
+            <div class="faq-list">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona o serviço de IPTV?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O IPTV envia a programação de canais, filmes e séries através de sua conexão de internet de banda larga. Ao invés de antenas e cabos de TV convencionais, você só precisa de um dispositivo conectado à internet (como Smart TV ou smartphone) e um aplicativo de reprodução compatível.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Preciso de quantos megas de internet?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para canais em qualidade HD, recomendamos no mínimo 10 Mega estáveis. Para transmissões em Full HD e 4K, é recomendado no mínimo 20 a 30 Mega de velocidade de download.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Posso utilizar minha assinatura em mais de uma tela?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cada login padrão de teste ou plano suporta a reprodução em 1 tela simultânea. Caso tente conectar duas telas ao mesmo tempo, a transmissão de um dos dispositivos travará. Para utilizar em mais telas ao mesmo tempo, consulte nossos pacotes multitela no WhatsApp.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais as formas de pagamento disponíveis?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceitamos Pix, cartão de crédito e boleto bancário através do nosso atendimento de suporte. A ativação dos planos pagos é feita de forma imediata após a confirmação do pagamento.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona o limite de 1 teste por cliente?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para evitar uso abusivo e revenda de contas temporárias, nosso servidor analisa o número de WhatsApp informado e o endereço de IP do dispositivo. Se for constatado que o WhatsApp ou a rede de internet já gerou um teste grátis, o sistema bloqueará a geração automática. Você poderá entrar em contato com o suporte caso tenha tido problemas na ativação.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <img src="assets/logo.png" alt="New Server Logo" class="footer-logo">
+                <p>A melhor experiência de streaming IPTV do mercado. Estabilidade de ponta, suporte humanizado e grade completa.</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/5579998130038" target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Menu</h4>
+                <a href="#beneficios">Benefícios</a>
+                <a href="#como-funciona">Dispositivos</a>
+                <a href="#planos">Planos</a>
+                <a href="#faq">Perguntas Frequentes</a>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Suporte & Vendas</h4>
+                <p><i class="fa-solid fa-phone"></i> (79) 99981-30038</p>
+                <p><i class="fa-solid fa-envelope"></i> suporte@newserver.sigma.st</p>
+                <a href="https://wa.me/5579998130038" target="_blank" class="btn btn-outline btn-sm footer-whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Falar Conosco</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; 2026 New Server. Todos os direitos reservados. Este é um portal de revenda de streaming de IPTV autônomo.</p>
+                <div class="payment-methods">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Animation Overlay -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="loading-box">
+            <div class="spinner"></div>
+            <h3 id="loadingText">Criando sua conta IPTV...</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
+            <p class="loading-subtext">Aguarde, conectando ao servidor de streaming...</p>
+        </div>
+    </div>
+
+    <!-- Credentials Modal -->
+    <div class="modal hidden" id="credentialsModal">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <div class="modal-header-section">
+                <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h2>Teste Criado Com Sucesso!</h2>
+                <p>Sua conta IPTV temporária de 4 horas foi criada. Guarde as credenciais abaixo:</p>
+            </div>
+
+            <!-- Credentials Display Card -->
+            <div class="credentials-card">
+                <div class="credential-row">
+                    <span class="cred-label">Usuário:</span>
+                    <div class="cred-val-container">
+                        <span class="cred-value" id="resUsername">------</span>
+                        <button class="btn-copy" data-copy="resUsername" title="Copiar Usuário"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="credential-row">
+                    <span class="cred-label">Senha:</span>
+                    <div class="cred-val-container">
+                        <span class="cred-value" id="resPassword">------</span>
+                        <button class="btn-copy" data-copy="resPassword" title="Copiar Senha"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="credential-row">
+                    <span class="cred-label">URL Principal:</span>
+                    <div class="cred-val-container">
+                        <span class="cred-value" id="resUrl">http://ggbb.fun</span>
+                        <button class="btn-copy" data-copy="resUrl" title="Copiar URL"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="credential-row">
+                    <span class="cred-label">Expira em:</span>
+                    <span class="cred-value text-warning" id="resExpires">------</span>
+                </div>
+            </div>
+
+            <!-- Setup details -->
+            <div class="modal-section">
+                <h3>Como começar a assistir agora:</h3>
+                
+                <div class="setup-options">
+                    <div class="setup-option-card">
+                        <h4>Assista no Navegador</h4>
+                        <p style="font-size: 11px; margin-bottom: 8px;">Selecione <b>M3U File Url</b>, defina o nome da Playlist como <b>newserver</b> e cole a M3U gerada.</p>
+                        <a href="http://webtv.iptvblinkplayer.com/m3u-login" target="_blank" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-window-restore"></i> Abrir WebPlayer</a>
+                    </div>
+                    
+                    <div class="setup-option-card">
+                        <h4>Assinar Plano Completo</h4>
+                        <p>Gostou do teste? Adquira já o plano pago!</p>
+                        <a id="resCheckoutBtn" href="https://newserverpainel.top/#/checkout/V4D3RlgLaq/oQ1YK7ZDON" target="_blank" class="btn btn-secondary btn-sm btn-block"><i class="fa-solid fa-credit-card"></i> Assinar Plano</a>
+                    </div>
+                </div>
+                
+                <div class="playlist-section">
+                    <h4>Lista M3U (Para Smart TVs antigas/Aplicativos alternativos):</h4>
+                    <div class="cred-val-container">
+                        <span class="cred-value playlist-url-text" id="resM3u">http://ggbb.fun/get.php...</span>
+                        <button class="btn-copy" data-copy="resM3u" title="Copiar Lista M3U"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer-section">
+                <p>Precisa de ajuda para configurar no seu aparelho? Fale com o suporte:</p>
+                <a href="https://wa.me/5579998130038?text=Ol%C3%A1%21+Preciso+de+ajuda+para+configurar+o+meu+teste+do+New+Server." target="_blank" class="btn btn-success"><i class="fa-brands fa-whatsapp"></i> Chamar Suporte WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Logic -->
+    <script src="main.js"></script>
+</body>
+</html>
