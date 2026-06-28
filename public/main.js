@@ -245,21 +245,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 const data = await res.json();
-                
+
                 clearInterval(progressInterval);
 
-                if (!res.ok || !data.success) {
-                    throw new Error(data.message || 'Falha ao gerar o teste.');
+                // A API retorna as credenciais diretamente na raiz do objeto
+                if (!res.ok || !data.username) {
+                    throw new Error(data.message || data.error || 'Falha ao gerar o teste.');
                 }
 
                 // Carregamento concluído com sucesso
                 progressBarFill.style.width = '100%';
                 loadingText.textContent = 'Conta IPTV Criada!';
-                
+
                 setTimeout(() => {
                     showLoading(false);
-                    // Preencher o modal com as credenciais
-                    displayCredentials(data.data);
+                    displayCredentials(data);
                 }, 500);
 
             } catch (err) {
