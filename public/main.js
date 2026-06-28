@@ -6,26 +6,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const closeDrawer = document.getElementById('closeDrawer');
     const mobileDrawer = document.getElementById('mobileDrawer');
-    
-    if (menuToggle && mobileDrawer) {
-        menuToggle.addEventListener('click', () => {
-            mobileDrawer.classList.add('active');
-        });
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+    function openDrawer() {
+        mobileDrawer.classList.add('active');
+        if (drawerBackdrop) drawerBackdrop.classList.add('active');
+        document.body.classList.add('no-scroll');
     }
-    
+
+    function hideDrawer() {
+        mobileDrawer.classList.remove('active');
+        if (drawerBackdrop) drawerBackdrop.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    }
+
+    if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', openDrawer);
+    }
+
     if (closeDrawer && mobileDrawer) {
-        closeDrawer.addEventListener('click', () => {
-            mobileDrawer.classList.remove('active');
-        });
+        closeDrawer.addEventListener('click', hideDrawer);
+    }
+
+    // Fechar ao clicar no fundo escurecido
+    if (drawerBackdrop) {
+        drawerBackdrop.addEventListener('click', hideDrawer);
     }
 
     // Fechar drawer ao clicar em algum link
     const drawerLinks = document.querySelectorAll('.drawer-link');
     drawerLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileDrawer.classList.remove('active');
-        });
+        link.addEventListener('click', hideDrawer);
     });
+
+    // Fechar drawer com a tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileDrawer.classList.contains('active')) {
+            hideDrawer();
+        }
+    });
+
+    // ==========================================
+    // 1b. Header com estado "scrolled"
+    // ==========================================
+    const header = document.querySelector('.header');
+    if (header) {
+        const onScroll = () => {
+            header.classList.toggle('scrolled', window.scrollY > 30);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
 
     // ==========================================
     // 2. Abas de Dispositivos (Tabs)
@@ -56,22 +87,71 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const faqQuestions = document.querySelectorAll('.faq-question');
 
+    const toggleFaq = (question) => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Fechar todos os FAQs primeiro para fazer efeito único
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('active');
+            const q = i.querySelector('.faq-question');
+            if (q) q.setAttribute('aria-expanded', 'false');
+        });
+
+        // Se o clicado não estava ativo, abre ele
+        if (!isActive) {
+            item.classList.add('active');
+            question.setAttribute('aria-expanded', 'true');
+        }
+    };
+
     faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-            const item = question.parentElement;
-            const isActive = item.classList.contains('active');
+        // Torna o item acessível por teclado
+        question.setAttribute('role', 'button');
+        question.setAttribute('tabindex', '0');
+        question.setAttribute('aria-expanded', 'false');
 
-            // Fechar todos os FAQs primeiro para fazer efeito único
-            document.querySelectorAll('.faq-item').forEach(i => {
-                i.classList.remove('active');
-            });
-
-            // Se o clicado não estava ativo, abre ele
-            if (!isActive) {
-                item.classList.add('active');
+        question.addEventListener('click', () => toggleFaq(question));
+        question.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleFaq(question);
             }
         });
     });
+
+    // ==========================================
+    // 3b. Animações de Revelação ao Rolar
+    // ==========================================
+    const revealTargets = document.querySelectorAll(
+        '.section-header, .benefit-card, .pricing-card, .tabs-header, .tab-pane.active, ' +
+        '.stat-item, .rule-item, .form-card, .faq-item, .trial-text-side, .footer-container > div'
+    );
+
+    if ('IntersectionObserver' in window && revealTargets.length) {
+        const groups = new Map();
+        revealTargets.forEach(el => {
+            el.classList.add('reveal');
+            // Escalona cards irmãos dentro de um mesmo grid
+            const parent = el.parentElement;
+            if (el.matches('.benefit-card, .pricing-card, .stat-item')) {
+                const idx = groups.get(parent) || 0;
+                if (idx > 0) el.classList.add('reveal-delay-' + Math.min(idx, 3));
+                groups.set(parent, idx + 1);
+            }
+        });
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        revealTargets.forEach(el => observer.observe(el));
+    }
 
     // ==========================================
     // 4. Máscara do WhatsApp Celular
