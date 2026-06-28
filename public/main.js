@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 600);
 
             try {
-                const res = await fetch('/api/solicitar-teste', {
+                const res = await fetch('https://newserver.sigma.st/api/chatbot/64vLbJ4LgG/nVrW8oDKaN', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
