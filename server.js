@@ -102,12 +102,14 @@ async function gerarTesteCompartilhado({ name, whatsapp, ip }) {
   }
 
   const record = {
+    // Guarda o retorno completo da API externa (dns, connections, package,
+    // createdAt/createdAtFormatted, expiresAt/expiresAtFormatted, payUrl, reply, etc.)
+    // para que uma consulta futura sempre tenha a informação real da conta, não um resumo.
+    ...upstream,
     name,
     whatsapp: cleanedPhone,
     ip,
     timestamp: new Date().toISOString(),
-    username: upstream.username,
-    password: upstream.password || '',
     expiresAtFormatted: upstream.expiresAtFormatted || '4 horas após a criação',
     m3u: `http://ggbb.fun/get.php?username=${upstream.username}&password=${upstream.password}&type=m3u_plus&output=ts`
   };
@@ -282,7 +284,7 @@ ${CATALOG_INFO}
 - Antes de chamar "gerar_teste", confirme que já tem nome completo E WhatsApp. Se faltar algo, peça com simpatia.
 - Se "gerar_teste" retornar "already_exists", explique que esse WhatsApp já tem teste gerado e mostre os dados existentes (sem criar outro).
 - Se "consultar_conta" não achar nada, avise com empatia e ofereça gerar um teste novo (peça nome + WhatsApp).
-- Ao apresentar credenciais, sempre mostre: usuário, senha, vencimento e a lista M3U.
+- Ao apresentar credenciais, sempre mostre: usuário, senha, vencimento e a lista M3U. O registro da conta também pode trazer outros dados reais (DNS, links alternativos de WebPlayer/HLS, código de app, link de renovação "payUrl", nome do pacote) — se o cliente perguntar por algo assim, use o que estiver no registro; nunca invente o que não estiver lá.
 - Preços, planos e passo a passo de configuração você responde direto, usando a base de conhecimento acima — não precisa mandar pro humano só por isso.
 - Encaminhe para o suporte humano no WhatsApp (79) 99981-30038 apenas quando: o cliente quiser fechar/pagar um plano com detalhes específicos de cobrança, tiver um problema técnico que os passos de configuração não resolvem, quiser um pacote multitela, ou pedir algo fora do que você sabe fazer.`;
 }
