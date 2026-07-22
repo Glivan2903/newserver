@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 600);
 
             try {
-                const res = await fetch('https://newserver.sigma.st/api/chatbot/64vLbJ4LgG/nVrW8oDKaN', {
+                const res = await fetch('/api/solicitar-teste', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -248,9 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 clearInterval(progressInterval);
 
-                // A API retorna as credenciais diretamente na raiz do objeto
-                if (!res.ok || !data.username) {
-                    throw new Error(data.message || data.error || 'Falha ao gerar o teste.');
+                if (!res.ok || !data.success) {
+                    throw new Error(data.message || 'Falha ao gerar o teste.');
                 }
 
                 // Carregamento concluído com sucesso
@@ -259,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     showLoading(false);
-                    displayCredentials(data);
+                    displayCredentials(data.data);
                 }, 500);
 
             } catch (err) {
