@@ -1539,6 +1539,70 @@ img {
 .reveal-delay-3 { transition-delay: 0.24s; }
 
 /* ==========================================
+   Botão Flutuante do Chat com Atendente
+   ========================================== */
+.chat-agent-float {
+    position: fixed;
+    bottom: 96px;
+    right: 24px;
+    z-index: 900;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px var(--primary-glow);
+    transition: var(--transition-smooth);
+}
+
+.chat-agent-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(232, 0, 26, 0.55);
+}
+
+.chat-agent-tooltip {
+    position: absolute;
+    right: 68px;
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: rgba(10, 11, 16, 0.95);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 8px 14px;
+    border-radius: var(--border-radius-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
+
+.chat-agent-float:hover .chat-agent-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 600px) {
+    .chat-agent-tooltip {
+        display: none;
+    }
+    .chat-agent-float {
+        bottom: 90px;
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+    }
+}
+
+/* ==========================================
    Botão Flutuante de WhatsApp
    ========================================== */
 .whatsapp-float {
