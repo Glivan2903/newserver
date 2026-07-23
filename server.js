@@ -3,13 +3,25 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 const OpenAI = require('openai');
+const { Redis } = require('@upstash/redis');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'database.json');
+const KV_KEY = 'newserver_database';
 const UPSTREAM_URL = 'https://newserver.sigma.st/api/chatbot/64vLbJ4LgG/nVrW8oDKaN';
 const CHAT_MODEL = 'gpt-4.1-mini';
 const MAX_TOOL_TURNS = 5;
+
+// Na Vercel, o sistema de arquivos do deploy é somente leitura — não dá para
+// gravar em database.json em produção. Se houver um banco Redis conectado
+// (aba Storage do projeto na Vercel injeta essas variáveis automaticamente,
+// seja via "KV" legado ou via integração Upstash Redis do Marketplace),
+// usamos o Redis; caso contrário (ambiente local), caímos no arquivo local.
+const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+const useKv = Boolean(KV_URL && KV_TOKEN);
+const redis = useKv ? new Redis({ url: KV_URL, token: KV_TOKEN }) : null;
 
 if (!process.env.OPENAI_API_KEY) {
   console.error('OPENAI_API_KEY não definida. Configure o arquivo .env antes de iniciar o servidor.');
@@ -35,6 +47,11 @@ function cleanPhoneNumber(phone) {
 }
 
 async function loadDb() {
+  if (useKv) {
+    const data = await redis.get(KV_KEY);
+    return data || { tests: [] };
+  }
+
   try {
     const content = await fs.readFile(DB_FILE, 'utf8');
     return JSON.parse(content);
@@ -44,6 +61,11 @@ async function loadDb() {
 }
 
 async function saveDb(dbData) {
+  if (useKv) {
+    await redis.set(KV_KEY, dbData);
+    return;
+  }
+
   await fs.writeFile(DB_FILE, JSON.stringify(dbData, null, 2));
 }
 
