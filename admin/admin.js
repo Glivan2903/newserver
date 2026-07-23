@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const logoutBtn = document.getElementById('logoutBtn');
 
+    const detailModal = document.getElementById('detailModal');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalClientName = document.getElementById('modalClientName');
+    const modalClientMeta = document.getElementById('modalClientMeta');
+    const modalBody = document.getElementById('modalBody');
+
     let clients = [];
 
     function escapeHtml(str) {
@@ -26,18 +33,106 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${escapeHtml(c.ip)}</td>
                 <td><button type="button" class="detail-btn" data-idx="${idx}">Ver tudo</button></td>
             </tr>
-            <tr class="detail-row hidden" id="detail-${idx}">
-                <td colspan="9"><pre>${escapeHtml(JSON.stringify(list[idx], null, 2))}</pre></td>
-            </tr>
         `).join('');
 
         tableBody.querySelectorAll('.detail-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const row = document.getElementById(`detail-${btn.getAttribute('data-idx')}`);
-                if (row) row.classList.toggle('hidden');
+                openModal(list[Number(btn.getAttribute('data-idx'))]);
             });
         });
     }
+
+    function detailRow(label, value, copyable) {
+        const safeValue = escapeHtml(value || '------');
+        if (!copyable) {
+            return `
+                <div class="detail-row">
+                    <span class="d-label">${label}</span>
+                    <div class="d-value-wrap"><span class="d-value">${safeValue}</span></div>
+                </div>`;
+        }
+        const id = `dval-${Math.random().toString(36).slice(2, 9)}`;
+        return `
+            <div class="detail-row">
+                <span class="d-label">${label}</span>
+                <div class="d-value-wrap">
+                    <span class="d-value" id="${id}">${safeValue}</span>
+                    <button type="button" class="d-copy-btn" data-copy-target="${id}" title="Copiar">⧉</button>
+                </div>
+            </div>`;
+    }
+
+    function openModal(client) {
+        modalClientName.textContent = client.name || 'Cliente';
+        modalClientMeta.textContent = client.whatsapp || '—';
+
+        modalBody.innerHTML = `
+            <div class="detail-section">
+                <h3>Cliente</h3>
+                <div class="detail-card">
+                    ${detailRow('Nome', client.name)}
+                    ${detailRow('WhatsApp', client.whatsapp, true)}
+                    ${detailRow('IP', client.ip)}
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Conta IPTV</h3>
+                <div class="detail-card">
+                    ${detailRow('Usuário', client.username, true)}
+                    ${detailRow('Senha', client.password, true)}
+                    ${detailRow('Pacote', client.package)}
+                    ${detailRow('Conexões', client.connections)}
+                    ${detailRow('DNS', client.dns, true)}
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Datas</h3>
+                <div class="detail-card">
+                    ${detailRow('Criado em', client.createdAtFormatted || client.timestamp)}
+                    ${detailRow('Vencimento', client.expiresAtFormatted)}
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Links</h3>
+                <div class="detail-card">
+                    ${detailRow('Lista M3U', client.m3u, true)}
+                    ${detailRow('Renovar plano', client.payUrl, true)}
+                </div>
+            </div>
+
+            <details class="detail-raw">
+                <summary>Ver registro bruto completo (JSON)</summary>
+                <pre>${escapeHtml(JSON.stringify(client, null, 2))}</pre>
+            </details>
+        `;
+
+        modalBody.querySelectorAll('.d-copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = document.getElementById(btn.getAttribute('data-copy-target'));
+                if (!target) return;
+                navigator.clipboard.writeText(target.textContent).then(() => {
+                    const original = btn.textContent;
+                    btn.textContent = '✓';
+                    setTimeout(() => { btn.textContent = original; }, 1200);
+                });
+            });
+        });
+
+        detailModal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        detailModal.classList.add('hidden');
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !detailModal.classList.contains('hidden')) closeModal();
+    });
 
     function applyFilter() {
         const term = searchInput.value.trim().toLowerCase();

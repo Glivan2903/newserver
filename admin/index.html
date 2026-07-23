@@ -7,10 +7,14 @@
     <title>Painel Admin | New Server</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/admin/style.css">
+    <link rel="icon" type="image/png" href="/assets/logo.png">
 </head>
 <body>
     <header class="admin-header">
-        <h1>Painel Admin — Clientes &amp; Testes</h1>
+        <div class="admin-header-brand">
+            <img src="/assets/logo.png" alt="New Server" class="admin-logo">
+            <h1>Painel Admin — Clientes &amp; Testes</h1>
+        </div>
         <div class="admin-header-actions">
             <input type="text" id="searchInput" placeholder="Buscar por nome, WhatsApp ou usuário...">
             <button id="logoutBtn" class="logout-btn">Sair</button>
@@ -38,6 +42,20 @@
             </table>
         </div>
     </main>
+
+    <!-- Modal de Detalhes da Conta -->
+    <div class="modal hidden" id="detailModal">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Fechar">&times;</button>
+            <div class="modal-header">
+                <div class="modal-header-icon"><i>👤</i></div>
+                <h2 id="modalClientName">Cliente</h2>
+                <p id="modalClientMeta">—</p>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
 
     <script src="/admin/admin.js"></script>
 </body>
