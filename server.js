@@ -2,16 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
+const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
 const OpenAI = require('openai');
 const { Redis } = require('@upstash/redis');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'database.json');
+const ADMIN_DIR = path.join(__dirname, 'admin');
 const KV_KEY = 'newserver_database';
 const UPSTREAM_URL = 'https://newserver.sigma.st/api/chatbot/64vLbJ4LgG/nVrW8oDKaN';
 const CHAT_MODEL = 'gpt-4.1-mini';
 const MAX_TOOL_TURNS = 5;
+const ADMIN_SESSION_TTL_SECONDS = 60 * 60 * 12; // 12h
+const ADMIN_COOKIE = 'admin_session';
 
 // Na Vercel, o sistema de arquivos do deploy é somente leitura — não dá para
 // gravar em database.json em produção. Se houver um banco Redis conectado
@@ -28,9 +33,15 @@ if (!process.env.OPENAI_API_KEY) {
   process.exit(1);
 }
 
+if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+  console.error('ADMIN_EMAIL/ADMIN_PASSWORD não definidos. Configure o arquivo .env antes de iniciar o servidor.');
+  process.exit(1);
+}
+
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ==========================================
@@ -141,6 +152,101 @@ async function gerarTesteCompartilhado({ name, whatsapp, ip }) {
 
   return { ok: true, code: 'created', upstream, account: record };
 }
+
+// ==========================================
+// Sessão do painel /admin
+// (usa o mesmo Redis do banco de dados em produção; em ambiente local,
+// sem Redis configurado, cai numa Map em memória — suficiente para um único
+// processo local, mas não confiável entre instâncias serverless na Vercel)
+// ==========================================
+const adminSessionsMemory = new Map();
+
+async function createAdminSession() {
+  const token = crypto.randomBytes(32).toString('hex');
+  const key = `admin_session:${token}`;
+
+  if (useKv) {
+    await redis.set(key, true, { ex: ADMIN_SESSION_TTL_SECONDS });
+  } else {
+    adminSessionsMemory.set(token, Date.now() + ADMIN_SESSION_TTL_SECONDS * 1000);
+  }
+
+  return token;
+}
+
+async function isValidAdminSession(token) {
+  if (!token) return false;
+
+  if (useKv) {
+    const exists = await redis.get(`admin_session:${token}`);
+    return Boolean(exists);
+  }
+
+  const expiresAt = adminSessionsMemory.get(token);
+  if (!expiresAt) return false;
+  if (Date.now() > expiresAt) {
+    adminSessionsMemory.delete(token);
+    return false;
+  }
+  return true;
+}
+
+async function destroyAdminSession(token) {
+  if (!token) return;
+  if (useKv) {
+    await redis.del(`admin_session:${token}`);
+  } else {
+    adminSessionsMemory.delete(token);
+  }
+}
+
+async function requireAdminPage(req, res, next) {
+  const valid = await isValidAdminSession(req.cookies[ADMIN_COOKIE]);
+  if (!valid) return res.redirect('/admin/login');
+  next();
+}
+
+async function requireAdminApi(req, res, next) {
+  const valid = await isValidAdminSession(req.cookies[ADMIN_COOKIE]);
+  if (!valid) return res.status(401).json({ success: false, message: 'Não autenticado.' });
+  next();
+}
+
+app.get('/admin/login', (req, res) => {
+  res.sendFile(path.join(ADMIN_DIR, 'login.html'));
+});
+
+app.post('/admin/login', async (req, res) => {
+  const { email, password } = req.body || {};
+
+  if (email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Email ou senha inválidos.' });
+  }
+
+  const token = await createAdminSession();
+  res.cookie(ADMIN_COOKIE, token, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: ADMIN_SESSION_TTL_SECONDS * 1000
+  });
+
+  return res.json({ success: true });
+});
+
+app.post('/admin/logout', async (req, res) => {
+  await destroyAdminSession(req.cookies[ADMIN_COOKIE]);
+  res.clearCookie(ADMIN_COOKIE);
+  res.json({ success: true });
+});
+
+app.get('/api/admin/clients', requireAdminApi, async (req, res) => {
+  const dbData = await loadDb();
+  const clients = [...dbData.tests].reverse();
+  res.json({ success: true, clients });
+});
+
+app.use('/admin', requireAdminPage, express.static(ADMIN_DIR));
 
 // ==========================================
 // Rota usada pelo formulário do site (público)

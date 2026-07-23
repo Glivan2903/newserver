@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Painel Admin | New Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/style.css">
+</head>
+<body>
+    <header class="admin-header">
+        <h1>Painel Admin — Clientes &amp; Testes</h1>
+        <div class="admin-header-actions">
+            <input type="text" id="searchInput" placeholder="Buscar por nome, WhatsApp ou usuário...">
+            <button id="logoutBtn" class="logout-btn">Sair</button>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <p id="statusMsg" class="status-msg">Carregando...</p>
+        <div class="table-wrap hidden" id="tableWrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>WhatsApp</th>
+                        <th>Usuário</th>
+                        <th>Senha</th>
+                        <th>Pacote</th>
+                        <th>Criado em</th>
+                        <th>Vencimento</th>
+                        <th>IP</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/admin/admin.js"></script>
+</body>
+</html>
