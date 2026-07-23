@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderRows(list) {
         tableBody.innerHTML = list.map((c, idx) => `
-            <tr>
+            <tr class="client-row" data-idx="${idx}" tabindex="0" role="button" aria-label="Ver detalhes de ${escapeHtml(c.name)}">
                 <td>${escapeHtml(c.name)}</td>
                 <td>${escapeHtml(c.whatsapp)}</td>
                 <td>${escapeHtml(c.username)}</td>
@@ -31,13 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${escapeHtml(c.createdAtFormatted || c.timestamp)}</td>
                 <td>${escapeHtml(c.expiresAtFormatted)}</td>
                 <td>${escapeHtml(c.ip)}</td>
-                <td><button type="button" class="detail-btn" data-idx="${idx}">Ver tudo</button></td>
             </tr>
         `).join('');
 
-        tableBody.querySelectorAll('.detail-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                openModal(list[Number(btn.getAttribute('data-idx'))]);
+        tableBody.querySelectorAll('.client-row').forEach(row => {
+            row.addEventListener('click', () => {
+                openModal(list[Number(row.getAttribute('data-idx'))]);
+            });
+            row.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(list[Number(row.getAttribute('data-idx'))]);
+                }
             });
         });
     }

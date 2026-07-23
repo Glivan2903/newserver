@@ -260,20 +260,19 @@ tbody td {
     white-space: nowrap;
 }
 
-.detail-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 6px 12px;
-    border-radius: 7px;
-    font-size: 12px;
+.client-row {
     cursor: pointer;
-    font-family: var(--font-primary);
+    transition: background-color 0.15s ease;
 }
 
-.detail-btn:hover {
-    background: var(--primary-gradient);
-    border-color: transparent;
+.client-row:hover,
+.client-row:focus-visible {
+    background: rgba(255, 128, 0, 0.08);
+}
+
+.client-row:focus-visible {
+    outline: 2px solid var(--primary-start);
+    outline-offset: -2px;
 }
 
 /* ===== Modal de Detalhes ===== */

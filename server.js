@@ -216,6 +216,14 @@ app.get('/admin/login', (req, res) => {
   res.sendFile(path.join(ADMIN_DIR, 'login.html'));
 });
 
+// style.css é usado tanto pela tela de login (sem sessão) quanto pelo painel
+// autenticado — precisa ficar fora do requireAdminPage, senão o navegador
+// pede o CSS sem cookie, recebe o redirect para /admin/login (HTML) no lugar
+// de um CSS válido, e descarta a folha de estilos inteira.
+app.get('/admin/style.css', (req, res) => {
+  res.sendFile(path.join(ADMIN_DIR, 'style.css'));
+});
+
 app.post('/admin/login', async (req, res) => {
   const { email, password } = req.body || {};
 
