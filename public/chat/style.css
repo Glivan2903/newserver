@@ -103,6 +103,27 @@ input:focus-visible {
     backdrop-filter: blur(10px);
 }
 
+.chat-back-btn {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.chat-back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-main);
+}
+
 .chat-logo {
     height: 38px;
     width: auto;
@@ -157,6 +178,13 @@ input:focus-visible {
 /* ==========================================
    Janela de Mensagens
    ========================================== */
+.chat-empty-hint {
+    margin: auto;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
 .chat-window {
     flex: 1;
     overflow-y: auto;
@@ -411,5 +439,34 @@ input:focus-visible {
     }
     .account-row .value {
         max-width: 150px;
+    }
+
+    /* Cabeçalho enxuto: só o essencial (voltar, logo pequeno, falar com humano em ícone) */
+    .chat-header {
+        gap: 8px;
+        padding: 10px 14px;
+    }
+    .chat-logo {
+        height: 24px;
+    }
+    .chat-header-text h1 {
+        font-size: 13px;
+    }
+    .live-status {
+        display: none;
+    }
+    .chat-human-link {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 50%;
+    }
+    .chat-human-label {
+        display: none;
+    }
+
+    /* Rodapé com aviso removido — some no mobile pra dar espaço ao chat */
+    .chat-disclaimer {
+        display: none;
     }
 }

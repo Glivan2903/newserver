@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chatInput');
     const chatSendBtn = document.getElementById('chatSendBtn');
     const typingIndicator = document.getElementById('typingIndicator');
+    const chatEmptyHint = document.getElementById('chatEmptyHint');
 
     // Histórico enviado ao backend a cada requisição (apenas turnos de usuário/assistente)
     const history = [];
-
-    const GREETING = 'Oi! 👋 Eu sou a Bia, da New Server. Posso te ajudar a gerar um teste grátis de 4 horas, consultar o vencimento da sua conta, ou tirar dúvidas sobre planos e configuração. Me conta, no que posso ajudar?';
 
     function scrollToBottom() {
         chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -89,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function sendMessage(text) {
+        if (chatEmptyHint) chatEmptyHint.remove();
+
         history.push({ role: 'user', content: text });
         addMessage('user', text);
         setTyping(true);
@@ -129,7 +130,4 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInput.value = '';
         sendMessage(text);
     });
-
-    // Mensagem de boas-vindas (não entra no histórico enviado ao backend)
-    addMessage('bot', GREETING);
 });

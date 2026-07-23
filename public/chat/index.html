@@ -16,18 +16,21 @@
 
     <div class="chat-page">
         <header class="chat-header">
+            <a href="/" class="chat-back-btn" aria-label="Voltar ao site">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
             <img src="/assets/logo.png" alt="New Server" class="chat-logo">
             <div class="chat-header-text">
                 <h1>Atendimento New Server</h1>
                 <p class="live-status"><span class="live-dot"></span> Agente online agora</p>
             </div>
             <a href="https://wa.me/5579998130038" target="_blank" rel="noopener" class="btn btn-outline btn-sm chat-human-link">
-                <i class="fa-brands fa-whatsapp"></i> Falar com humano
+                <i class="fa-brands fa-whatsapp"></i> <span class="chat-human-label">Falar com humano</span>
             </a>
         </header>
 
         <main class="chat-window" id="chatWindow">
-            <!-- Mensagens injetadas via JS -->
+            <p class="chat-empty-hint" id="chatEmptyHint">Envie uma mensagem para iniciar a conversa.</p>
         </main>
 
         <div class="typing-indicator hidden" id="typingIndicator">
