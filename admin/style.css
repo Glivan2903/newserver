@@ -460,4 +460,73 @@ tbody td {
         min-width: 0;
         flex: 1;
     }
+    .admin-main {
+        padding: 18px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Login */
+    .login-card {
+        padding: 28px 22px;
+    }
+    .login-logo {
+        height: 36px;
+    }
+    .login-card h1 {
+        font-size: 20px;
+    }
+
+    /* Cabeçalho do painel: ações empilham e ocupam a largura toda */
+    .admin-header {
+        padding: 16px;
+    }
+    .admin-header h1 {
+        font-size: 15px;
+    }
+    .admin-header-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+    #searchInput {
+        width: 100%;
+    }
+    .logout-btn {
+        width: 100%;
+    }
+
+    /* Tabela: mantém rolagem horizontal própria, sem vazar pra página */
+    .table-wrap {
+        max-width: 100%;
+    }
+    table {
+        font-size: 12px;
+    }
+    thead th,
+    tbody td {
+        padding: 8px 10px;
+    }
+
+    /* Modal: menos respiro nas bordas, linhas de detalhe empilham */
+    .modal {
+        padding: 12px;
+    }
+    .modal-content {
+        padding: 22px 18px;
+        max-height: 92vh;
+    }
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .detail-row .d-value {
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-all;
+    }
+    .detail-row .d-value-wrap {
+        width: 100%;
+    }
 }
