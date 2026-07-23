@@ -1543,26 +1543,32 @@ img {
    ========================================== */
 .chat-agent-float {
     position: fixed;
-    bottom: 96px;
+    bottom: 24px;
     right: 24px;
     z-index: 900;
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: var(--primary-gradient);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 28px;
     text-decoration: none;
     box-shadow: 0 8px 24px var(--primary-glow);
-    transition: var(--transition-smooth);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    animation: chatFloatPulse 2.5s ease-in-out infinite;
 }
 
 .chat-agent-float:hover {
     transform: scale(1.1);
     box-shadow: 0 10px 30px rgba(232, 0, 26, 0.55);
+}
+
+@keyframes chatFloatPulse {
+    0%, 100% { box-shadow: 0 8px 24px var(--primary-glow), 0 0 0 0 rgba(232, 0, 26, 0.5); }
+    50% { box-shadow: 0 8px 24px var(--primary-glow), 0 0 0 14px rgba(232, 0, 26, 0); }
 }
 
 .chat-agent-tooltip {
@@ -1595,44 +1601,12 @@ img {
         display: none;
     }
     .chat-agent-float {
-        bottom: 90px;
+        bottom: 18px;
+        right: 18px;
         width: 52px;
         height: 52px;
-        font-size: 22px;
+        font-size: 24px;
     }
-}
-
-/* ==========================================
-   Botão Flutuante de WhatsApp
-   ========================================== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 900;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #25d366;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    text-decoration: none;
-    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-    animation: wppPulse 2.5s ease-in-out infinite;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
-}
-
-@keyframes wppPulse {
-    0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.5); }
-    50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 0 0 14px rgba(37, 211, 102, 0); }
 }
 
 /* ==========================================
@@ -1700,7 +1674,6 @@ img {
     }
     .reveal { opacity: 1; transform: none; }
     .gradient-text { background-position: 0% 50%; }
-    .whatsapp-float { animation: none; }
 }
 
 /* ==========================================
@@ -1892,11 +1865,4 @@ img {
         font-size: 13px;
     }
 
-    .whatsapp-float {
-        width: 52px;
-        height: 52px;
-        font-size: 26px;
-        bottom: 18px;
-        right: 18px;
-    }
 }
